@@ -1,0 +1,22 @@
+{
+  "name": "smart-parking",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev --webpack",
+    "build": "next build --webpack",
+    "start": "next start",
+    "db:init": "node --env-file=.env.local scripts/init-db.mjs",
+    "simulate": "node --env-file=.env.local scripts/simulate-device.mjs"
+  },
+  "dependencies": {
+    "@neondatabase/serverless": "^0.10.4",
+    "mqtt": "^5.10.1",
+    "next": "^16.4.6",
+    "react": "^19.2.3",
+    "react-dom": "^19.2.3"
+  },
+  "engines": {
+    "node": ">=20.9.0"
+  }
+}

@@ -1,0 +1,9 @@
+node_modules
+.next
+.env.local
+.env
+.env.vercel
+.vercel
+smart_parking
+firmware/kalibrasi_sensor_ir
+AGENTS.md
