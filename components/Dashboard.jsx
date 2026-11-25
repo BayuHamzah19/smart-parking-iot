@@ -160,10 +160,24 @@ export default function Dashboard() {
   }
 
   async function sendGate(gate, action) {
+    const isOpen = (action === "open");
+    // Langsung update animasi palang di layar dashboard secara instan
+    setStatus((s) => s ? {
+      ...s,
+      gateIn: gate === "in" ? isOpen : s.gateIn,
+      gateOut: gate === "out" ? isOpen : s.gateOut,
+    } : s);
+
     try {
       await api("/api/command", { method: "POST", body: JSON.stringify({ gate, action }) });
       say(`Perintah ${action === "open" ? "buka" : "tutup"} palang ${gate === "in" ? "masuk" : "keluar"} terkirim.`);
     } catch (e) {
+      // Kembalikan tampilan jika ada kesalahan kirim
+      setStatus((s) => s ? {
+        ...s,
+        gateIn: gate === "in" ? !isOpen : s.gateIn,
+        gateOut: gate === "out" ? !isOpen : s.gateOut,
+      } : s);
       say(e.message, true);
     }
   }
